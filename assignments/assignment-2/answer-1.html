@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Answer 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* h1 {
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+        }
+
+        button {
+            display: inline-block;
+            margin-left: 2em; 
+            width: 100px;
+            height: 50px;
+        }
+
+        button:hover {
+            cursor: pointer;
+        } */
+
+        canvas {
+            /* margin: auto; */
+            width: 600/*px*/;
+            height: 600/*px*/;
+            border: 1px solid black;
+        }
+
+        /* div {
+            width: 50%;
+            margin: auto;
+        } */
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Answer 1 of Assignment 2</h1>
+        <button id="createBoxes">Create Box</button>
+        <div>
+            <canvas id="myCanvas"></canvas>
+        </div>
+    </main>
+    <script> 
+        // window.onload = init();
+
+        // function init() {
+        //     buttonSpecialEffects();
+        // }
+
+        buttonSpecialEffects();
+
+        function buttonSpecialEffects() {
+            let btn = document.getElementById("createBoxes");
+            btn.addEventListener("click", randomBox);
+        }
+
+        function randomBox() { // do I need to create a div element? Or just some rectangle is sufficient?
+            // let btn = document.getElementById("createBoxes");
+            // let foo = document.createElement("div");
+            // foo.style.height = "40px";
+            // foo.style.backgroundColor = "hotpink";
+            // document.body.appendChild(foo);
+            let canvas = document.getElementById("myCanvas");
+            let context = canvas.getContext("2d");
+            context.fillStyle = "hotpink";
+            context.fillRect(Math.random() * 560, Math.random() * 560, 40, 40);
+        }
+    </script>
+    
+</body>
+</html>
