@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <title>Answer 1</title>
+<body>
+    <h1>Answer 1 of Assignment 2</h1>
+    <h2>Robby Renz</h2>
+
+    <button id="createBoxes">Create Box</button>
+
+    <canvas id="myCanvas" width="600px" height="600px" style="border: 1px solid black;"></canvas>
+
+    <script>
+        let btn = document.getElementById("createBoxes");
+        let canvas = document.getElementById("myCanvas");
+        let context = canvas.getContext("2d");
+        btn.onclick = function() {
+            // context.fillStyle = "#0f0";
+            // context.fillRect(Math.random() * 560, Math.random() * 560, 40, 40);
+            let foo = document.createElement("div");
+            context.fillElement(foo);
+        }
+    </script>
+</body>
+</html>
