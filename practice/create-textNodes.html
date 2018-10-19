@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Creating Nodes</title>
+        <script>
+            window.onload = replaceImages(); // without the '()', the function automatically does its thing, why?
+            function replaceImages() {
+                let images = document.body.getElementsByTagName("img");
+                for (let i = images.length - 1; i >= 0; i--) {
+                    let image = images[i];
+                    if (image.alt) {
+                        let text = document.createTextNode(image.alt);
+                        image.parentNode.replaceChild(text, image);
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <p>The <img src="https://www.catster.com/wp-content/uploads/2015/06/600px-odd-eyed-white-cat.jpg" alt="cat"/> in the <img src="https://www.villagehatshop.com/photos/product/giant/4511390S163377/-/size-l.jpg" alt="hat"/>.</p>
+        <p>
+            <button onclick="replaceImages()">Replace</button>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Answer 1</title>
+        <script>
+            window.onload = init;
+
+            function init() {
+                let btn = document.getElementById("createBoxes");
+                btn.addEventListener("click", randBox);
+            }
+
+            function randBox() {
+                let box = document.createElement("div");
+                box.style.height = "40px";
+                box.style.width = "40px";
+                box.style.border = "#0f0";
+                box.style.backgroundColor = "hotpink";
+                document.appendChild(box);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Answer 1 of Assignment 2</h1>
+        <p>This page can create boxes randomly within a large container. Have fun!</p>
+        <button id="createBoxes">Create Box</button>
+        <div width="600px" height="600px" style="border: 1px solid black"></div>
+    </body>
+</html>
