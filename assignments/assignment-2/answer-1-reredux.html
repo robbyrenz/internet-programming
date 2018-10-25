@@ -34,19 +34,31 @@
                 // document.getElementbyId("sandbox").appendChild(box); TODO: why is this not working?!
                 document.querySelector("div").appendChild(box);
                 randomPosition(box);
+                draggableBox(box);
             }
 
             function randomPosition(box) {
-                box.style.left = `${Math.floor(Math.random() * 561)}px`;              
-                console.log(box.style.left);
-                box.style.top = `${Math.floor(Math.random() * 561)}px`;
-                console.log(box.style.top);
+                box.style.left = `${Math.floor(Math.random() * 560)}px`;              
+                box.style.top = `${Math.floor(Math.random() * 560)}px`;
+            }
+
+            // function to drag the box within the container
+            function draggableBox(box) {
+                box.addEventListener("mousedown", event => {
+                    box.style.backgroundColor = "RebeccaPurple";
+                    while (box.style.top >= "0px" || box.style.left >= "0px") {
+                    // while (event.button == 0) {
+                        console.log(event.type);
+                        box.style.top = event.clientX;
+                        box.style.left = event.clientY;
+                    } 
+                });
             }
         </script>
     </head>
     <body>
         <h1>Answer 1 of Assignment 2</h1>
-        <p>This page can create boxes randomly within a large container. Have fun!</p>
+        <p>This page can create boxes randomly within a large container. You can also drag it around within the container. Have fun!</p>
         <div id="sandbox"></div>
         <button id="createBoxes">Create Box</button>
     </body>
