@@ -5,7 +5,7 @@
         <title>Answer 1</title>
         <style>
             .box {
-                /* position: absolute; */
+                position: absolute;
                 height: 40px;
                 width: 40px;
                 border: 2px solid #0f0;
@@ -17,6 +17,7 @@
                 width: 600px;
                 height: 600px;
                 border: 2px solid black;
+                position: relative;
             }
         </style>
         <script>
@@ -32,11 +33,14 @@
                 box.classList.add("box");
                 // document.getElementbyId("sandbox").appendChild(box); TODO: why is this not working?!
                 document.querySelector("div").appendChild(box);
-
+                randomPosition(box);
             }
 
             function randomPosition(box) {
-                
+                box.style.left = `${Math.floor(Math.random() * 561)}px`;              
+                console.log(box.style.left);
+                box.style.top = `${Math.floor(Math.random() * 561)}px`;
+                console.log(box.style.top);
             }
         </script>
     </head>
