@@ -19,16 +19,48 @@
         <script>
             window.onload = init;
 
+            // function to convert degress to radians
+            const degreesToRadians = degrees => degrees * Math.PI / 180;
+
             function init() {
                 let canvas = document.querySelector("canvas");
                 let context = canvas.getContext("2d");
                 canvas.addEventListener("click", floatingForm);
             }
 
+            // function to create a floating form
             function floatingForm() {
                 let form = document.createElement("form");
                 let label = document.createElement("label");
-                label.id = 
+                label.for = "text";
+                let select = document.createElement("select");
+                select.id = "text";
+                let optionOne = document.createElement("option");
+                optionOne.classList.add("value") = asdf; // value is not a class, its an attribute, so this is wrong
+                optionOne.value = "circle";
+                let optionTwo = document.createElement("option");
+                optionTwo.value = "square";
+                optionOne.innerHTML = "circle";
+                optionTwo.innerHTML = "square";
+                select.appendChild(optionOne, optionTwo);
+                form.appendChild(select);
+                document.body.appendChild(form);
+            }
+
+            // draws a cirlce
+            function circle(context, radius, event) {
+                context.beginPath();
+                context.arc(event.clientX, event.clientY, radius, 0, degreesToRadians(360));
+                context.fillStyle = "hotpink";
+                context.fill();
+                // TODO: add code here to append the circle to the document, maybe?
+            }
+
+            // draws a square
+            function square(context, side, event) {
+                let middle = side / 2; // so that the square will be drawn with its middle at the place of my cursor
+                context.fillStyle = "RebeccaPurple";
+                context.fillRect(event.clientX + middle, event.clientY + middle, side, side);
             }
 
         </script>

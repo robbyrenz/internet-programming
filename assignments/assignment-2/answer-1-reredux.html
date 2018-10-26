@@ -42,16 +42,21 @@
                 box.style.top = `${Math.floor(Math.random() * 560)}px`;
             }
 
+                        // while (box.style.top >= "0px" || box.style.left >= "0px") {
             // function to drag the box within the container
             function draggableBox(box) {
                 box.addEventListener("mousedown", event => {
                     box.style.backgroundColor = "RebeccaPurple";
-                    while (box.style.top >= "0px" || box.style.left >= "0px") {
-                    // while (event.button == 0) {
-                        console.log(event.type);
-                        box.style.top = event.clientX;
-                        box.style.left = event.clientY;
-                    } 
+                    if (event.button == 0) {
+                            document.getElementById("sandbox").addEventListener("mousemove", event => {
+                                if (event.buttons == 0)
+                                    document.getElementById("sandbox").removeEventListener("mousemove", this);
+                                else {
+                                    box.style.left = event.clientX - 20 + "px";
+                                    box.style.top = event.clientY - 140 + "px";
+                                }
+                            });
+                    }
                 });
             }
         </script>
