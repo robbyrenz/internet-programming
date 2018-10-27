@@ -31,24 +31,48 @@
             // function to create a floating form
             function floatingForm() {
                 let form = document.createElement("form");
+
                 let label = document.createElement("label");
                 label.for = "text";
+                label.innerHTML = "Length of side or radius ";
+
+                let input = document.createElement("input");
+                input.type = "text";
+
                 let select = document.createElement("select");
-                select.id = "text";
+                select.id = "shape";
+
                 let optionOne = document.createElement("option");
-                optionOne.classList.add("value") = asdf; // value is not a class, its an attribute, so this is wrong
                 optionOne.value = "circle";
+
                 let optionTwo = document.createElement("option");
                 optionTwo.value = "square";
+
                 optionOne.innerHTML = "circle";
                 optionTwo.innerHTML = "square";
-                select.appendChild(optionOne, optionTwo);
+
+                select.appendChild(optionOne);
+                select.appendChild(optionTwo);
+
+                let inputButton = document.createElement("input");
+                inputButton.type = "button";
+                inputButton.id = "showtime";
+                inputButton.value = "Preview";
+                inputButton.addEventListener("click", runner);
+
+                label.appendChild(input);
+
+                form.appendChild(label);
+                form.appendChild(input);
                 form.appendChild(select);
+                form.appendChild(inputButton);
                 document.body.appendChild(form);
             }
 
-            // draws a cirlce
+            // draws a circle
             function circle(context, radius, event) {
+                let foo = document.getElementById("text");
+                radius = foo.value;
                 context.beginPath();
                 context.arc(event.clientX, event.clientY, radius, 0, degreesToRadians(360));
                 context.fillStyle = "hotpink";
@@ -58,9 +82,19 @@
 
             // draws a square
             function square(context, side, event) {
+                let foo = document.getElementById("text");
+                side = foo.value;
                 let middle = side / 2; // so that the square will be drawn with its middle at the place of my cursor
                 context.fillStyle = "RebeccaPurple";
                 context.fillRect(event.clientX + middle, event.clientY + middle, side, side);
+            }
+
+            function runner() {
+                let foo = document.getElementById("shape");
+                if (foo.value === "circle")
+                    circle;
+                else
+                    square;
             }
 
         </script>
