@@ -36,7 +36,7 @@
         function userCode() {
             // JS CODE START
             if (JSON.parse(localStorage.getItem("myLocation")) != undefined)
-                Mapping.resetLocation((JSON.parse(localStorage.getItem("myLocation"))).latO, (JSON.parse(localStorage.getItem("myLocation")).longO));
+                Mapping.resetLocation(JSON.parse(localStorage.getItem("myLocation")));
             // JS CODE END
         }
 
@@ -49,11 +49,11 @@
 
         function getLocation(position) {
             let lat = position.coords.latitude;
-            let long = position.coords.longitutde;
+            let long = position.coords.longitude;
             const myLocation = {
-                latO: lat,
-                longO: long
-            }
+                lat: lat,
+                lon: long
+            };
             localStorage.setItem("myLocation", JSON.stringify(myLocation));
             Mapping.resetLocation(myLocation);
         }
