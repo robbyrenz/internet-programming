@@ -28,14 +28,34 @@
 
         window.onload = () => {
             Mapping.initializeMap();
-
             userCode();
+            let btn = document.querySelector("button");
+            btn.addEventListener("click", checkLocation);
         }
 
         function userCode() {
             // JS CODE START
-
+            if (JSON.parse(localStorage.getItem("myLocation")) != undefined)
+                Mapping.resetLocation((JSON.parse(localStorage.getItem("myLocation"))).latO, (JSON.parse(localStorage.getItem("myLocation")).longO));
             // JS CODE END
+        }
+
+        function checkLocation() {
+            if (navigator.geolocation)
+                navigator.geolocation.getCurrentPosition(getLocation);
+            else
+                alert("Sorry, your browser does not support the Geolocation API");
+        }
+
+        function getLocation(position) {
+            let lat = position.coords.latitude;
+            let long = position.coords.longitutde;
+            const myLocation = {
+                latO: lat,
+                longO: long
+            }
+            localStorage.setItem("myLocation", JSON.stringify(myLocation));
+            Mapping.resetLocation(myLocation);
         }
 
     </script>
@@ -43,7 +63,9 @@
 <body>
 
     <!-- HTML CODE GOES HERE-->
-
+    <button>Update current location</button>
+    <br/>
+    <br/>
     <div id="mapid" style="width: 600px; height: 400px;"></div>
     
 </body>
