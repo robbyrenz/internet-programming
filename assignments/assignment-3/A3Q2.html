@@ -40,6 +40,8 @@
 
     <script>
 
+        window.onload = init;
+
         function getUrl(studentNumber) {
             return `https://fall-221005.appspot.com?studentNumber=${studentNumber}`
         }
@@ -49,6 +51,20 @@
         }
 
         // JS CODE GOES HERE
+        function init() {
+            let btnSave = document.getElementById("saveMessage");
+            btnSave.addEventListener("click", first);
+            let btnGet = document.getElementById("getMessage");
+            btnGet.addEventListener("click", second);
+        }
+
+        function first() {
+            // code goes here
+        }
+
+        function second() {
+            // code goes here
+        }
 
     </script>
 </head>
