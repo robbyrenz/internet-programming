@@ -59,11 +59,21 @@
         }
 
         function first() {
-            // code goes here
+            let inputValue = document.getElementById("studentNumber").value;
+            let textareaValue = document.getElementById("message").value;
+            fetch(getUrl(inputValue), {
+                method: "POST",
+                body: textareaValue
+            })
+                .then(response => response.json())
+                .then(data => data.message === "Saved" ? success : console.log("Error, message not found"));
         }
 
         function second() {
-            // code goes here
+            let inputValue = document.getElementById("studentNumber");
+            fetch(getUrl(inputValue))
+                .then(response => response.text())
+                .then(text => document.getElementById("messageOutput").innerHTML = text);
         }
 
     </script>
