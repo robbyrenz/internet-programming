@@ -70,7 +70,7 @@
         }
 
         function second() {
-            let inputValue = document.getElementById("studentNumber");
+            let inputValue = document.getElementById("studentNumber").value;
             fetch(getUrl(inputValue))
                 .then(response => response.text())
                 .then(text => document.getElementById("messageOutput").innerHTML = text);
