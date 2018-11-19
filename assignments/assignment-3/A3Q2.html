@@ -66,7 +66,7 @@
                 body: textareaValue
             })
                 .then(response => response.json())
-                .then(data => data.message === "Saved" ? success : console.log("Error, message not found"));
+                .then(data => data.message === "Saved" ? success() : console.log("Error, message not found"));
         }
 
         function second() {
