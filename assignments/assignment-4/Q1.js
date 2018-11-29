@@ -1,32 +1,32 @@
 window.onload = init;
 
+// initialize a variable that counts up the number of square numbers in ARRAY
+let squareNumbers = 0
 let x = 0;
 let y = 1000;
 let more = true;
+let workers = [];
 
 function outputCount(count) {
     document.getElementById('totalSquares').innerHTML = `There are ${count} perfect squares`;
 }
 
 function init() {
-	// initialize a vaiable that counts up the number of square numbers in ARRAY
-	let squareNumbers = 0
+    initWorkers();
 
+    // output the number of square numbers all 10 web workers counted up
+    for (let w in workers)
+        count(w);
+
+    outputCount(squareNumbers);
+    for (let w in workers)
+        terminated(w);
+}
+
+function initWorkers() {
     // create 10 web workers, all accessing the same .js file
     for (let i = 0; i < 10; i++)
-        createWorker(i);
-
-    // sending more jobs to the web workers that is done
-    worker.onmessage = (event) => {
-        squareNumbers = event.data;
-        if (more)
-            // call a function that calls the specified web worker and give it more jobs
-            jobsToWorkers(x,y,); // should I include a web worker here as a parameter
-
-    }
-    
-    // finally, output the number of square numbers all 10 web workers counted up
-    outputCount(squareNumbers);
+        workers.push(createWorker(i));
 }
 
 function createWorker(i) {
@@ -34,13 +34,34 @@ function createWorker(i) {
     worker.id = i;
 
     worker.postMessage(ARRAY.slice(x,y));
+    debugger;
     x += 1000;
     y += 1000;
+
+    // worker.onmessage = event => {
+    //     if (more)
+    //         // give it the next 1000 numbers
+    //         worker.postMessage(ARRAY.slice(x,y));
+    //         x += 1000;
+    //         y += 1000;
+    // }
 }
 
 // giving jobs to web workers once they are done
-function jobsToWorkers(x,y) {
-    for (let i = 0; i < ARRAY.length; i++) {
+// function jobsToWorkers(x,y) {
+//     for (let i = 0; i < ARRAY.length; i++) {
 
+//     }
+// }
+
+// stopping each web worker once the array of numbers has been processed
+function terminated() {
+    workers.forEach(worker => worker.terminate());
+}
+
+// counting up the total number of square numbers the worker sent
+function count(w) {
+    w.onmessage = function(event) {
+        squareNumbers += event.data;
     }
 }
