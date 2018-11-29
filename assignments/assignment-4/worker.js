@@ -15,7 +15,7 @@ function countNumber(event) {
 	}
     // finally, send the result to the main thread
     postMessage(squareNumbers);
-    terminate(); // correct?
+    self.terminate(); // correct?
 }
 
 // checks whether a number is a square number

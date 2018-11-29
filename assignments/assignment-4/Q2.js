@@ -9,3 +9,8 @@ function httpUrl() {
 }
 
 //JS CODE START
+window.onload = init;
+
+function init() {
+    importScripts(httpUrl); // parenthesis for the httpUrl function?
+}
