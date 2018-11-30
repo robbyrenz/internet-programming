@@ -18,6 +18,9 @@ function init() {
     for (let w in workers)
         count(w);
 
+    if (more)
+        jobsToWorkers(x,y);
+
     outputCount(squareNumbers);
     for (let w in workers)
         terminated(w);
@@ -34,25 +37,22 @@ function createWorker(i) {
     worker.id = i;
 
     worker.postMessage(ARRAY.slice(x,y));
-    debugger;
     x += 1000;
     y += 1000;
-
-    // worker.onmessage = event => {
-    //     if (more)
-    //         // give it the next 1000 numbers
-    //         worker.postMessage(ARRAY.slice(x,y));
-    //         x += 1000;
-    //         y += 1000;
-    // }
 }
 
 // giving jobs to web workers once they are done
-// function jobsToWorkers(x,y) {
-//     for (let i = 0; i < ARRAY.length; i++) {
-
-//     }
-// }
+function jobsToWorkers(x,y) {
+    for (let i = 0; i < ARRAY.length; i++) {
+        for (let w in workers) {
+            w.postMessage(ARRAY.slice(x,y));
+            x += 1000;
+            y += 1000;
+        }
+    }
+    if (x === 10000000)
+        more = false;
+}
 
 // stopping each web worker once the array of numbers has been processed
 function terminated() {
